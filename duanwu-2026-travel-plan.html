@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>端午情侣游方案 · 2026年6月19-21日</title>
+<style>
+  :root {
+    --ocean: #2B6CB0;
+    --ocean-light: #EBF4FF;
+    --ancient: #744210;
+    --ancient-light: #FFFBEB;
+    --bg: #F7FAFC;
+    --card: #FFFFFF;
+    --text: #1A202C;
+    --text-muted: #718096;
+    --border: #E2E8F0;
+    --accent: #ED8936;
+    --rain: #3182CE;
+    --success: #38A169;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, #2B6CB0 0%, #744210 100%);
+    color: white;
+    text-align: center;
+    padding: 48px 20px 40px;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50px;
+    padding: 4px 16px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.9;
+  }
+  .hero .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* Tab Bar */
+  .tab-bar {
+    display: flex;
+    background: var(--card);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    color: var(--text-muted);
+  }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab-btn .icon { font-size: 20px; display: block; margin-bottom: 2px; }
+
+  /* Panels */
+  .tab-panel { display: none; padding: 20px 16px 60px; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent);
+  }
+
+  /* Train Card */
+  .train-card {
+    background: var(--ocean-light);
+    border: 1px solid #BEE3F8;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .train-card h4 { font-size: 14px; color: var(--ocean); margin-bottom: 10px; font-weight: 700; }
+  .train-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px dashed #BEE3F8;
+    font-size: 14px;
+  }
+  .train-row:last-child { border-bottom: none; }
+  .train-tag {
+    background: var(--ocean);
+    color: white;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .train-tag.recommend { background: var(--success); }
+  .train-price { color: var(--ocean); font-weight: 700; margin-left: auto; }
+
+  /* Info Grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .info-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .info-item .label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .info-item .value { font-size: 14px; font-weight: 600; }
+
+  /* Timeline */
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .day-header {
+    background: linear-gradient(90deg, var(--ocean) 0%, #4299E1 100%);
+    color: white;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .ancient .day-header { background: linear-gradient(90deg, var(--ancient) 0%, #C05621 100%); }
+  .timeline { padding: 12px 16px; }
+  .time-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .time-item:last-child { border-bottom: none; }
+  .time-item .time {
+    color: var(--ocean);
+    font-weight: 700;
+    white-space: nowrap;
+    min-width: 50px;
+    font-size: 13px;
+  }
+  .ancient .time-item .time { color: var(--ancient); }
+  .time-item .content { flex: 1; }
+  .time-item .content .title { font-weight: 600; margin-bottom: 2px; }
+  .time-item .content .note { font-size: 12px; color: var(--text-muted); }
+
+  /* Rain fallback */
+  .rain-box {
+    background: var(--ocean-light);
+    border: 1px solid #BEE3F8;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .ancient .rain-box { background: var(--ancient-light); border-color: #FBD38D; }
+  .rain-box h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--rain); }
+  .rain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rain-item {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+  }
+  .rain-item .name { font-weight: 600; margin-bottom: 2px; }
+
+  /* Cost table */
+  .cost-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+  .cost-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .cost-table td:last-child { text-align: right; font-weight: 600; }
+  .cost-table .total td { font-weight: 700; font-size: 16px; color: var(--accent); }
+  .cost-table .total { background: #FFFAF0; border-radius: 8px; }
+
+  /* Links */
+  .link-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .link-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .link-card .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .link-tag {
+    background: #EDF2F7;
+    color: var(--text);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+  }
+  .link-tag.ocean { background: var(--ocean-light); color: var(--ocean); }
+  .link-tag.ancient { background: var(--ancient-light); color: var(--ancient); }
+
+  /* Compare table */
+  .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
+  .compare-table th {
+    background: #EDF2F7;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+  }
+  .compare-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  /* Alert */
+  .alert-box {
+    background: #FFF5F5;
+    border: 1px solid #FEB2B2;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 20px;
+  }
+  .alert-box h4 { font-size: 14px; color: #C53030; margin-bottom: 8px; font-weight: 700; }
+  .alert-list { list-style: none; }
+  .alert-list li { font-size: 13px; padding: 3px 0; color: #742A2A; display: flex; gap: 8px; }
+  .alert-list li::before { content: "⚠️"; }
+
+  /* Pick section */
+  .pick-section {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ancient) 100%);
+    border-radius: 16px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .pick-section h3 { font-size: 18px; margin-bottom: 16px; }
+  .pick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pick-card {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 14px;
+  }
+  .pick-card .label { font-weight: 700; margin-bottom: 4px; font-size: 15px; }
+
+  /* Checklist */
+  .checklist { margin-bottom: 20px; }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-icon { width: 20px; height: 20px; background: #48BB78; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .rain-grid { grid-template-columns: 1fr; }
+    .pick-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">🗺️ 懒人出游规划师</div>
+  <h1>端午情侣游 · 完整方案</h1>
+  <p>2026年6月19日（周五）~ 21日（周日）· 共3天 · 不调休</p>
+  <div class="meta">
+    <span>📍 深圳出发</span>
+    <span>💑 2人情侣</span>
+    <span>🌧️ 6月多阵雨</span>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('xiamen')">
+    <span class="icon">🌊</span>方案一：厦门
+  </button>
+  <button class="tab-btn" onclick="showTab('chaozhou')">
+    <span class="icon">🏯</span>方案二：潮州
+  </button>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  if (name === 'xiamen') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('panel-xiamen').classList.add('active');
+  } else {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('panel-chaozhou').classList.add('active');
+  }
+}
+</script>
+
+<!-- ===================== 厦门方案 ===================== -->
+<div id="panel-xiamen" class="tab-panel active">
+
+  <div class="section-title">🚄 深圳→厦门 往返高铁</div>
+  <div class="train-card">
+    <h4>去程 · Day 1（6月19日 周五）</h4>
+    <div class="train-row">
+      <span class="train-tag recommend">推荐</span>
+      <strong>D3126</strong> 深圳北 06:59 → 厦门北 10:23
+      <span class="train-price">205元/人</span>
+    </div>
+    <div class="train-row">
+      <span class="train-tag">备选</span>
+      D674 · 深圳北 07:05 → 厦门 10:50 · 3h45m · 231元/人
+    </div>
+    <div class="train-row">
+      <span class="train-tag">备选</span>
+      D2352 · 深圳北 07:10 → 约10:34 · 3h24m
+    </div>
+    <h4 style="margin-top:12px;">返程 · Day 3（6月21日 周日）</h4>
+    <div class="train-row">
+      <span class="train-tag recommend">推荐</span>
+      <strong>D2336</strong> 厦门 18:29 → 深圳北 约21:xx
+      <span class="train-price">约200元/人</span>
+    </div>
+  </div>
+
+  <div class="section-title">📋 基本信息</div>
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="label">目的地</div>
+      <div class="value">福建省厦门市</div>
+    </div>
+    <div class="info-item">
+      <div class="label">天数</div>
+      <div class="value">3天2晚</div>
+    </div>
+    <div class="info-item">
+      <div class="label">整体风格</div>
+      <div class="value">🌊 海岛+文艺+小资</div>
+    </div>
+    <div class="info-item">
+      <div class="label">人均预算</div>
+      <div class="value">1500~2000元</div>
+    </div>
+    <div class="info-item">
+      <div class="label">6月天气</div>
+      <div class="value">26~32°C 多阵雨</div>
+    </div>
+    <div class="info-item">
+      <div class="label">端午特色</div>
+      <div class="value">🐲 集美龙舟赛</div>
+    </div>
+    <div class="info-item">
+      <div class="label">住宿推荐</div>
+      <div class="value">曾厝垵民宿</div>
+    </div>
+    <div class="info-item">
+      <div class="label">往返高铁</div>
+      <div class="value">约800~900元/2人</div>
+    </div>
+  </div>
+
+  <div class="section-title">🗓️ 详细行程</div>
+
+  <div class="day-card">
+    <div class="day-header">Day 1 · 6月19日（周五）· 鼓浪屿深度浪漫游</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">06:30</div>
+        <div class="content">
+          <div class="title">起床出发去深圳北站</div>
+          <div class="note">提前15分钟到站</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">06:59</div>
+        <div class="content">
+          <div class="title">🚄 乘 D3126 出发</div>
+          <div class="note">深圳北 → 厦门北，3h24m，二等座205元/人</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">10:23</div>
+        <div class="content">
+          <div class="title">抵达厦门北站，打车至东渡码头</div>
+          <div class="note">约20分钟 / 约30元</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">11:00</div>
+        <div class="content">
+          <div class="title">🛳️ 乘船登鼓浪屿（三丘田码头）</div>
+          <div class="note">提前3天「厦门轮渡+」小程序购票，35元/人</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">11:00~12:30</div>
+        <div class="content">
+          <div class="title">🌸 菽庄花园游览</div>
+          <div class="note">海边江南园林，钢琴博物馆有整点演奏，门票约30元</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">12:30~13:30</div>
+        <div class="content">
+          <div class="title">🍡 龙头路小吃街觅食</div>
+          <div class="note">叶氏麻糍 · 沈家肠粉 · 林氏鱼丸，边走边吃超有感觉 💕</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">13:30~15:30</div>
+        <div class="content">
+          <div class="title">🏔️ 登日光岩俯瞰全岛</div>
+          <div class="note">下午登顶避开暴晒，俯瞰鼓浪屿+厦门双子塔同框，门票约50元</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">15:30~17:30</div>
+        <div class="content">
+          <div class="title">🌅 港仔后沙滩踩水看日落</div>
+          <div class="note">记得带拖鞋！吹海风超浪漫</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">17:30</div>
+        <div class="content">
+          <div class="title">乘船返回厦门岛</div>
+          <div class="note">提前订好返程票</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">18:30</div>
+        <div class="content">
+          <div class="title">🏠 入住曾厝垵民宿</div>
+          <div class="note">休整</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">19:30</div>
+        <div class="content">
+          <div class="title">🍜 中山路步行街晚餐</div>
+          <div class="note">沙茶面 · 花生汤 · 蚝烙，感受骑楼夜景</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">21:00</div>
+        <div class="content">
+          <div class="title">🌙 曾厝垵夜市逛吃</div>
+          <div class="note">阿信厚吐司 · 蘑菇传奇，回民宿休息</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">Day 2 · 6月20日（周六）· 文艺厦门深度游</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">08:00</div>
+        <div class="content">
+          <div class="title">起床，民宿早餐</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">09:00~10:00</div>
+        <div class="content">
+          <div class="title">🙏 南普陀寺祈福游览</div>
+          <div class="note">免费，提前「南普陀寺」公众号预约；买素饼（南瓜/绿豆味）做伴手礼</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">10:00~11:00</div>
+        <div class="content">
+          <div class="title">🎓 厦门大学游览</div>
+          <div class="note">提前1天「U厦大」小程序预约，8:00放号；芙蓉隧道涂鸦墙打卡</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">11:30~12:30</div>
+        <div class="content">
+          <div class="title">🍜 厦大周边午餐</div>
+          <div class="note">沙茶面 · 海蛎煎</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">13:00~15:00</div>
+        <div class="content">
+          <div class="title">🎨 沙坡尾艺术西区</div>
+          <div class="note">旧厂房改造市集，手作店、咖啡馆，文艺青年天堂，超适合情侣拍照 📸</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">15:00~17:30</div>
+        <div class="content">
+          <div class="title">🚴 环岛路骑行（椰风寨→音乐广场）</div>
+          <div class="note">租电动车约50元/小时，海景超美；傍晚在演武大桥拍厦门全景</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">17:30~18:30</div>
+        <div class="content">
+          <div class="title">🌅 演武大桥观景平台看日落</div>
+          <div class="note">拍厦门+双子塔全景，比鼓浪屿更出片！</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">19:30</div>
+        <div class="content">
+          <div class="title">🦐 曾厝垵美食街晚餐</div>
+          <div class="note">海鲜大排档+网红小吃</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">21:00</div>
+        <div class="content">
+          <div class="title">回民宿休息</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header">Day 3 · 6月21日（周日）· 集美龙舟赛+收尾</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">08:30</div>
+        <div class="content">
+          <div class="title">起床，民宿早餐</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">09:30~11:30</div>
+        <div class="content">
+          <div class="title">🐲 集美学村 + 龙舟池端午龙舟赛 🎉</div>
+          <div class="note">嘉庚建筑群+龙舟赛同时get，厦门端午特色活动</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">12:00~13:00</div>
+        <div class="content">
+          <div class="title">🍜 集美万达 / 石鼓路午餐</div>
+          <div class="note">性价比高，本地人常去</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">13:30~15:30</div>
+        <div class="content">
+          <div class="title">🌿 厦门园林博览苑 或 五缘湾湿地公园</div>
+          <div class="note">避开人潮，亲近自然</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">15:30~16:30</div>
+        <div class="content">
+          <div class="title">🛍️ 中山路买伴手礼</div>
+          <div class="note">凤梨酥 · 馅饼 · 肉松饼</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">16:30~17:00</div>
+        <div class="content">
+          <div class="title">前往厦门站</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">18:29</div>
+        <div class="content">
+          <div class="title">🚄 乘 D2336 返程回深圳北</div>
+          <div class="note">约3.5小时，21:xx抵达</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🌧️ 雨天备用方案</div>
+  <div class="rain-box">
+    <h4>☂️ 厦门雨天备选 — 室内也能玩得开心</h4>
+    <div class="rain-grid">
+      <div class="rain-item">
+        <div class="name">🧪 厦门科技馆</div>
+        <div>互动项目多，情侣一起体验超有趣</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🏛️ 胡里山炮台</div>
+        <div>有历史底蕴，有顶可遮蔽游览</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🏛️ 厦门博物馆</div>
+        <div>了解闽南历史文化</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🎵 鼓浪屿室内</div>
+        <div>风琴博物馆+菽庄花园室内部分</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">💰 费用估算（2人3天）</div>
+  <table class="cost-table">
+    <tr><td>🚄 往返高铁（二等座 D3126+D2336）</td><td>约800~900元</td></tr>
+    <tr><td>🛳️ 鼓浪屿船票（35元×4程×2人）</td><td>约280元</td></tr>
+    <tr><td>🏠 住宿（曾厝垵民宿2晚，约400元/晚）</td><td>约800元</td></tr>
+    <tr><td>🎟️ 鼓浪屿景点（菽庄+日光岩）</td><td>约300元/2人</td></tr>
+    <tr><td>🍜 餐饮（600元/人×2人）</td><td>约1200元</td></tr>
+    <tr><td>🚴 环岛路电动车+市内交通</td><td>约200元</td></tr>
+    <tr><td>🎁 伴手礼+其他</td><td>约300元</td></tr>
+    <tr class="total"><td>💰 合计（2人）</td><td>约3880~4980元</td></tr>
+  </table>
+
+  <div class="section-title">🔗 必提前预约</div>
+  <div class="link-card">
+    <h4>微信小程序 / 公众号预约</h4>
+    <div class="links">
+      <span class="link-tag ocean">厦门轮渡+（鼓浪屿船票，提前3天）</span>
+      <span class="link-tag ocean">U厦大（厦门大学，提前1天8:00抢号）</span>
+      <span class="link-tag ocean">南普陀寺（公众号，提前1天）</span>
+      <span class="link-tag">携程/去哪儿（曾厝垵民宿，现在就订）</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== 潮州方案 ===================== -->
+<div id="panel-chaozhou" class="tab-panel">
+
+  <div class="section-title">🚄 深圳→潮汕 往返高铁</div>
+  <div class="train-card">
+    <h4>去程 · Day 1（6月19日 周五）</h4>
+    <div class="train-row">
+      <span class="train-tag recommend">推荐</span>
+      <strong>D169</strong> 深圳北 08:45 → 潮汕 10:53
+      <span class="train-price">约107元/人</span>
+    </div>
+    <div class="train-row">
+      <span class="train-tag">备选</span>
+      D682 · 深圳北 08:48 → 潮汕 10:15 · 2h27m · 约107元/人
+    </div>
+    <div class="train-row">
+      <span class="train-tag">备选</span>
+      D7401 · 深圳北 07:46 → 潮汕 10:15 · 2h29m · 约107元/人
+    </div>
+    <h4 style="margin-top:12px;">返程 · Day 3（6月21日 周日）</h4>
+    <div class="train-row">
+      <span class="train-tag recommend">推荐</span>
+      <strong>D7352</strong> 潮汕 21:45 → 深圳北 23:30
+      <span class="train-price">约107元/人</span>
+    </div>
+  </div>
+
+  <div class="section-title">📋 基本信息</div>
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="label">目的地</div>
+      <div class="value">潮州市 + 汕头市</div>
+    </div>
+    <div class="info-item">
+      <div class="label">天数</div>
+      <div class="value">3天2晚</div>
+    </div>
+    <div class="info-item">
+      <div class="label">整体风格</div>
+      <div class="value">🏯 古城+美食+文化</div>
+    </div>
+    <div class="info-item">
+      <div class="label">人均预算</div>
+      <div class="value">900~1300元</div>
+    </div>
+    <div class="info-item">
+      <div class="label">6月天气</div>
+      <div class="value">26~33°C 多阵雨</div>
+    </div>
+    <div class="info-item">
+      <div class="label">端午特色</div>
+      <div class="value">🐲 韩江龙舟赛+灯光秀</div>
+    </div>
+    <div class="info-item">
+      <div class="label">住宿推荐</div>
+      <div class="value">牌坊街古厝民宿</div>
+    </div>
+    <div class="info-item">
+      <div class="label">往返高铁</div>
+      <div class="value">约430元/2人</div>
+    </div>
+  </div>
+
+  <div class="section-title">🗓️ 详细行程</div>
+
+  <div class="day-card ancient">
+    <div class="day-header">Day 1 · 6月19日（周五）· 潮州古城慢游</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">08:15</div>
+        <div class="content">
+          <div class="title">起床出发去深圳北站</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">08:45</div>
+        <div class="content">
+          <div class="title">🚄 乘 D169 出发</div>
+          <div class="note">深圳北 → 潮汕，约107元/人</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">10:53</div>
+        <div class="content">
+          <div class="title">抵达潮汕站，乘K2快线/滴滴前往古城</div>
+          <div class="note">约40分钟 / 约50元</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">11:30</div>
+        <div class="content">
+          <div class="title">🏠 入住牌坊街甲第巷古厝民宿</div>
+          <div class="note">古色古香潮汕老厝，带独立小院，私密浪漫 💕</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">12:30~13:30</div>
+        <div class="content">
+          <div class="title">🥩 牌坊街牛肉火锅午餐</div>
+          <div class="note">老迹牛肉 · 阿彬牛肉火锅</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">14:00~15:30</div>
+        <div class="content">
+          <div class="title">🙏 开元寺祈福游览</div>
+          <div class="note">免费，提前「潮州文旅」小程序预约；门口红墙打卡超出片</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">15:30~17:00</div>
+        <div class="content">
+          <div class="title">🏯 漫步牌坊街，打卡22座历史牌坊</div>
+          <div class="note">南洋骑楼建筑风格，角落找好机位超出片</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">17:00~18:00</div>
+        <div class="content">
+          <div class="title">🏰 广济楼登楼俯瞰韩江落日</div>
+          <div class="note">免费，城楼上看落日超浪漫</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">18:00~18:30</div>
+        <div class="content">
+          <div class="title">🌉 广济桥看"过河拆桥"奇景</div>
+          <div class="note">门票20元，17:30前后浮桥开启，每天仅此一次</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">19:30</div>
+        <div class="content">
+          <div class="title">🍢 牌坊街宵夜</div>
+          <div class="note">牛肉丸 · 蚝烙 · 鱼丸 · 潮汕肠粉</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">20:30</div>
+        <div class="content">
+          <div class="title">✨ 广济桥灯光秀</div>
+          <div class="note">夜晚灯光亮起，韩江畔超浪漫</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">21:30</div>
+        <div class="content">
+          <div class="title">🌙 古巷散步回民宿</div>
+          <div class="note">牵手感受古城烟火气</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card ancient">
+    <div class="day-header">Day 2 · 6月20日（周六）· 韩江龙舟赛+文化深度</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">08:00</div>
+        <div class="content">
+          <div class="title">民宿早餐（潮汕特色：粿汁/白粥小菜）</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">09:00~10:30</div>
+        <div class="content">
+          <div class="title">🌊 潮州西湖晨游+划船</div>
+          <div class="note">公园幽静，晴天拍照超美，划船超浪漫</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">10:30~12:00</div>
+        <div class="content">
+          <div class="title">📚 韩文公祠游览</div>
+          <div class="note">纪念韩愈，俯瞰韩江全景，免费</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">12:00~13:00</div>
+        <div class="content">
+          <div class="title">🦢 潮州西湖附近午餐（潮汕卤水鹅必尝）</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">13:00~14:30</div>
+        <div class="content">
+          <div class="title">🙏 泰佛殿打卡</div>
+          <div class="note">潮州版"泰国"，门口可租赁泰服拍照，超适合情侣 📸</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">14:30~15:30</div>
+        <div class="content">
+          <div class="title">🏛️ 青龙古庙</div>
+          <div class="note">潮汕民俗信仰中心</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">16:00~18:00</div>
+        <div class="content">
+          <div class="title">🐲 韩江滨江长廊看端午龙舟演练 🎉</div>
+          <div class="note">鼓点+江风+落日，氛围感拉满！</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">18:30</div>
+        <div class="content">
+          <div class="title">🍵 西马路晚餐+地道小吃</div>
+          <div class="note">咸水粿 · 鸭母捻 · 成川治茶（潮汕特色奶茶）</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">20:00</div>
+        <div class="content">
+          <div class="title">🍵 民宿天井体验潮汕工夫茶</div>
+          <div class="note">21式工夫茶，二人世界超温馨 🍵</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">22:00</div>
+        <div class="content">
+          <div class="title">回房休息</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card ancient">
+    <div class="day-header">Day 3 · 6月21日（周日）· 汕头民国风情+返程</div>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time">08:00</div>
+        <div class="content">
+          <div class="title">退房，潮汕肠粉早餐</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">09:00</div>
+        <div class="content">
+          <div class="title">乘高铁/拼车前往汕头</div>
+          <div class="note">约40分钟</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">10:00~12:00</div>
+        <div class="content">
+          <div class="title">🏛️ 汕头小公园骑楼群</div>
+          <div class="note">民国风建筑，情侣复古大片📸；避开主街，拐进安平路/升平路人少景美</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">12:00~13:00</div>
+        <div class="content">
+          <div class="title">🦐 富苑饮食午餐</div>
+          <div class="note">生腌+卤味+潮汕鱼饭，潮汕人的深夜食堂</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">13:30~15:00</div>
+        <div class="content">
+          <div class="title">🌅 西堤公园野餐+看礐石大桥落日</div>
+          <div class="note">准备潮汕小吃+水果+饮料，二人世界超治愈 🌅</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">15:00~16:00</div>
+        <div class="content">
+          <div class="title">🎁 老市区买伴手礼</div>
+          <div class="note">汕头朥饼 · 牛肉丸干</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">16:30</div>
+        <div class="content">
+          <div class="title">前往潮汕站</div>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time">21:45</div>
+        <div class="content">
+          <div class="title">🚄 乘 D7352 返程回深圳北</div>
+          <div class="note">约107元/人，23:30抵达</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🌧️ 雨天备用方案</div>
+  <div class="rain-box">
+    <h4>☂️ 潮州雨天备选 — 室内也能很浪漫</h4>
+    <div class="rain-grid">
+      <div class="rain-item">
+        <div class="name">🍵 民宿天井工夫茶</div>
+        <div>下雨天和女朋友喝茶，超浪漫 🍵</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🪵 潮州木雕工作室</div>
+        <div>体验传统技艺的魅力</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🏛️ 潮州古城博物馆</div>
+        <div>了解潮州历史文化</div>
+      </div>
+      <div class="rain-item">
+        <div class="name">🍲 室内美食探索</div>
+        <div>牛肉火锅+生腌+卤味，雨天吃美食超满足</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">💰 费用估算（2人3天）</div>
+  <table class="cost-table">
+    <tr><td>🚄 往返高铁（二等座 D169+D7352）</td><td>约430元/2人</td></tr>
+    <tr><td>🚗 潮汕站→古城+汕头当日往返</td><td>约180元/2人</td></tr>
+    <tr><td>🏠 住宿（古城民宿2晚，约250元/晚）</td><td>约500元</td></tr>
+    <tr><td>🍜 餐饮（500元/人×2人）</td><td>约1000元</td></tr>
+    <tr><td>🎟️ 景点门票（广济桥等）</td><td>约100元/2人</td></tr>
+    <tr><td>🎁 伴手礼+其他</td><td>约300元</td></tr>
+    <tr class="total"><td>💰 合计（2人）</td><td>约2510~3110元</td></tr>
+  </table>
+
+  <div class="section-title">🔗 必提前预约</div>
+  <div class="link-card">
+    <h4>微信小程序 / 公众号预约</h4>
+    <div class="links">
+      <span class="link-tag ancient">潮州文旅（开元寺+广济桥，提前1天）</span>
+      <span class="link-tag">携程/去哪儿（牌坊街民宿，现在就订）</span>
+      <span class="link-tag">潮州发布（韩江龙舟赛具体时间）</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== 通用部分 ===================== -->
+
+<!-- 出发前必做 -->
+<div style="padding: 0 16px 0; max-width: 800px; margin: 0 auto;">
+  <div class="section-title" style="margin-top:20px;">⚠️ 现在就要做的事</div>
+  <div class="alert-box">
+    <h4>🚨 端午出行，这些必须现在就开始抢！</h4>
+    <ul class="alert-list">
+      <li><strong>订往返高铁票</strong> — 本周内！端午票很快售罄</li>
+      <li><strong>订民宿</strong> — 现在就开始！端午节临时订没房或价格翻倍</li>
+      <li><strong>鼓浪屿船票</strong> — 6月16日起「厦门轮渡+」小程序</li>
+      <li><strong>厦门大学预约</strong> — 6月18日起每天8:00抢号</li>
+      <li><strong>潮州景点预约</strong> — 6月18日起「潮州文旅」小程序</li>
+    </ul>
+  </div>
+
+  <div class="section-title">🎯 怎么选？</div>
+  <div class="pick-section">
+    <h3>根据你的偏好pick一个吧</h3>
+    <div class="pick-grid">
+      <div class="pick-card">
+        <div class="label">🌊 喜欢海岛浪漫、骑行拍照</div>
+        <div>→ 选厦门（海景更美，环岛路骑行很浪漫）</div>
+      </div>
+      <div class="pick-card">
+        <div class="label">🏯 喜欢古城慢游、美食探索</div>
+        <div>→ 选潮州（美食更地道更便宜，预算省约1500元）</div>
+      </div>
+      <div class="pick-card">
+        <div class="label">💰 预算优先，想省钱</div>
+        <div>→ 选潮州（整体少花约1500元）</div>
+      </div>
+      <div class="pick-card">
+        <div class="label">🍜 吃货一枚，想吃遍美食</div>
+        <div>→ 选潮州（牛肉火锅、生腌、工夫茶...美食天堂）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">🎒 出行准备清单</div>
+  <div class="checklist">
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>折叠伞/晴雨伞</strong> — 两地6月多阵雨必带</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>防晒霜 + 遮阳帽</strong> — 紫外线强</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>舒适平底鞋</strong> — 古城的青石板路+鼓浪屿小巷</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>薄外套</strong> — 室内空调冷/海边风大</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>肠胃药</strong> — 潮汕美食丰富，以防肠胃不适</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>移动电源</strong> — 拍照打卡必备</div></div>
+    <div class="check-item"><div class="check-icon">✓</div><div><strong>身份证</strong> — 鼓浪屿登船、酒店入住必备</div></div>
+  </div>
+</div>
+
+<div class="footer">
+  🗺️ 懒人出游规划师 · 端午情侣游方案 · 2026年6月19-21日<br>
+  数据来源：网络实时搜索 · 具体信息以官方最新公告为准<br>
+  <br>
+  📄 完整Markdown文档：trips/duanwu-2026-xiamen-chaozhou.md
+</div>
+
+</body>
+</html>
